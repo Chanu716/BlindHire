@@ -7,7 +7,14 @@ const path = require('path');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://chanu716.github.io',
+    'https://chanu716.github.io/BlindHire',
+    'http://localhost:5500', // for local dev
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Serve static files from client directory
