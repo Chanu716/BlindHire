@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - BlindHire</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main>
+        <section class="auth-section">
+            <h1 class="app-title"><span class="icon">🕶️</span>BlindHire</h1>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="candidate">Candidate</option>
+                    <option value="employer">Employer</option>
+                </select>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="✉️ Email" required />
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="🔑 Password" required />
+                <div id="candidateFields" style="display:none;">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+</div>
+<div id="extraFields"></div>
+                <button type="submit" class="btn btn-secondary"><span class="icon">📝</span>Sign Up</button>
+            </form>
+            <div id="signup-message"></div>
+            <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
+        </section>
+    </main>
+    <script>
+    // Optionally, dynamically add fields based on role selection
+    document.addEventListener('DOMContentLoaded', function() {
+      const roleSelect = document.getElementById('role');
+      const extraFields = document.getElementById('extraFields');
+      roleSelect.addEventListener('change', function() {
+        if (roleSelect.value === 'employer') {
+          document.getElementById('candidateFields').style.display = 'none';
+          extraFields.innerHTML = '<label for="companyName">Company Name:</label><input type="text" id="companyName" name="companyName" required />' +
+            '<label for="industry">Industry:</label><input type="text" id="industry" name="industry" required />';
+        } else {
+          document.getElementById('candidateFields').style.display = '';
+          extraFields.innerHTML = '';
+        }
+      });
+      roleSelect.dispatchEvent(new Event('change'));
+    });
+    </script>
+    <script src="scripts/signup.js"></script>
+</body>
+</html>

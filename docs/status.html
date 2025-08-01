@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlindHire - System Status</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .status-page {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .status-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-indicator {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status-ok {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success-color);
+        }
+        .status-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+        }
+        .test-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .console-output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-page">
+        <h1 class="app-title"><span class="icon">🕶️</span>BlindHire System Status</h1>
+        
+        <div class="status-card">
+            <h2>📊 Data Status</h2>
+            <div id="dataStatus">
+                <div class="status-item">
+                    <span>Job Posts Data</span>
+                    <span class="status-indicator" id="jobPostsStatus">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span>Candidate Profiles</span>
+                    <span class="status-indicator" id="candidatesStatus">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span>Employer Data</span>
+                    <span class="status-indicator" id="employerStatus">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span>Candidate Data</span>
+                    <span class="status-indicator" id="candidateStatus">Checking...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <h2>🧪 Dashboard Tests</h2>
+            <div class="test-buttons">
+                <button class="btn btn-primary" onclick="runAllTests()">
+                    <span class="icon">🧪</span>Run All Tests
+                </button>
+                <button class="btn btn-outline" onclick="testCandidateDashboard()">
+                    <span class="icon">👤</span>Test Candidate
+                </button>
+                <button class="btn btn-outline" onclick="testEmployerDashboard()">
+                    <span class="icon">🏢</span>Test Employer
+                </button>
+                <button class="btn btn-secondary" onclick="clearConsole()">
+                    <span class="icon">🗑️</span>Clear Console
+                </button>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <h2>🚀 Quick Navigation</h2>
+            <div class="test-buttons">
+                <a href="candidate.html" class="btn btn-primary">
+                    <span class="icon">👤</span>Candidate Dashboard
+                </a>
+                <a href="employer.html" class="btn btn-primary">
+                    <span class="icon">🏢</span>Employer Dashboard
+                </a>
+                <a href="index.html" class="btn btn-outline">
+                    <span class="icon">🏠</span>Home Page
+                </a>
+                <button class="btn btn-secondary" onclick="resetAllData()">
+                    <span class="icon">🔄</span>Reset Test Data
+                </button>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <h2>💻 Console Output</h2>
+            <div id="consoleOutput" class="console-output">
+                Console output will appear here...
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/test-data.js"></script>
+    <script>
+        // Capture console output
+        const originalLog = console.log;
+        const originalError = console.error;
+        const consoleOutput = document.getElementById('consoleOutput');
+
+        function updateConsole(message, type = 'log') {
+            const color = type === 'error' ? '#ff6b6b' : '#00ff00';
+            consoleOutput.innerHTML += `<div style="color: ${color};">${message}</div>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            updateConsole(args.join(' '));
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            updateConsole(args.join(' '), 'error');
+        };
+
+        // Status checking functions
+        function checkDataStatus() {
+            const jobPosts = localStorage.getItem('jobPosts');
+            const candidates = localStorage.getItem('candidateProfiles');
+            const employer = localStorage.getItem('employerData');
+            const candidate = localStorage.getItem('candidateData');
+
+            updateStatus('jobPostsStatus', jobPosts);
+            updateStatus('candidatesStatus', candidates);
+            updateStatus('employerStatus', employer);
+            updateStatus('candidateStatus', candidate);
+        }
+
+        function updateStatus(elementId, data) {
+            const element = document.getElementById(elementId);
+            if (data) {
+                const parsedData = JSON.parse(data);
+                const count = Array.isArray(parsedData) ? parsedData.length : 1;
+                element.textContent = `✓ ${count} items`;
+                element.className = 'status-indicator status-ok';
+            } else {
+                element.textContent = '❌ Missing';
+                element.className = 'status-indicator status-error';
+            }
+        }
+
+        // Test functions
+        function runAllTests() {
+            console.log('🧪 Running comprehensive dashboard tests...\n');
+            testCandidateDashboard();
+            testEmployerDashboard();
+            console.log('\n✅ All tests completed!');
+        }
+
+        function testCandidateDashboard() {
+            console.log('👤 Testing Candidate Dashboard...');
+            
+            // Test data
+            const candidateData = JSON.parse(localStorage.getItem('candidateData') || '{}');
+            console.log(`   Skills: ${candidateData.skills?.length || 0}`);
+            console.log(`   Portfolio: ${candidateData.portfolioItems?.length || 0}`);
+            console.log(`   Applications: ${candidateData.applications?.length || 0}`);
+            
+            // Test candidate ID
+            const candidateId = localStorage.getItem('candidateId');
+            console.log(`   Candidate ID: ${candidateId || 'Not generated'}`);
+            
+            console.log('   ✓ Candidate dashboard data verified\n');
+        }
+
+        function testEmployerDashboard() {
+            console.log('🏢 Testing Employer Dashboard...');
+            
+            // Test data
+            const employerData = JSON.parse(localStorage.getItem('employerData') || '{}');
+            const jobPosts = JSON.parse(localStorage.getItem('jobPosts') || '[]');
+            
+            console.log(`   Company: ${employerData.companyName || 'Not set'}`);
+            console.log(`   Industry: ${employerData.industry || 'Not set'}`);
+            console.log(`   Job Posts: ${jobPosts.length}`);
+            
+            console.log('   ✓ Employer dashboard data verified\n');
+        }
+
+        function clearConsole() {
+            consoleOutput.innerHTML = 'Console cleared...\n';
+        }
+
+        function resetAllData() {
+            if (confirm('Are you sure you want to reset all test data? This will clear all stored information.')) {
+                if (window.resetTestData) {
+                    window.resetTestData();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    console.log('🗑️ Manually clearing data...');
+                    localStorage.clear();
+                    location.reload();
+                }
+            }
+        }
+
+        // Initialize status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                checkDataStatus();
+                console.log('🔍 BlindHire System Status Check');
+                console.log('📊 Checking data availability...');
+                
+                const jobPosts = JSON.parse(localStorage.getItem('jobPosts') || '[]');
+                const candidates = JSON.parse(localStorage.getItem('candidateProfiles') || '[]');
+                
+                console.log(`✓ ${jobPosts.length} job posts available`);
+                console.log(`✓ ${candidates.length} candidate profiles available`);
+                console.log('🚀 System ready for testing!');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

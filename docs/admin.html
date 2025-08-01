@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BlindHire</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main>
+        <section class="dashboard-section">
+            <h1 class="app-title"><span class="icon">🕶️</span>BlindHire</h1>
+            <h2><span class="icon">🛡️</span>Admin Dashboard</h2>
+            <ul class="feature-list">
+                <li><span class="icon">📊</span> View platform statistics and reports</li>
+                <li><span class="icon">📝</span> Manage jobs and candidates</li>
+                <li><span class="icon">🛡️</span> Oversee platform activity</li>
+            </ul>
+            <div class="dashboard-actions">
+                <button id="viewStatsBtn" class="btn btn-primary"><span class="icon">📊</span>View Reports</button>
+                <button id="manageJobsBtn" class="btn btn-secondary"><span class="icon">💼</span>Manage Jobs</button>
+                <button id="manageCandidatesBtn" class="btn btn-primary"><span class="icon">👤</span>Manage Candidates</button>
+                <button id="logoutBtn" class="btn btn-secondary"><span class="icon">🚪</span>Logout</button>
+            </div>
+            <div id="admin-dashboard-content"></div>
+        </section>
+    </main>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>
