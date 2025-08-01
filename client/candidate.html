@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Dashboard - BlindHire</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="candidate-header">
+        <nav>
+            <div class="logo">
+                <span class="icon">🕶️</span>BlindHire
+            </div>
+            <div class="nav-links">
+                <a href="#profile" id="editProfileBtn">
+                    <span class="icon">✏️</span>Edit Blind Profile
+                </a>
+                <a href="#applications" id="applicationsBtn">
+                    <span class="icon">📋</span>My Applications
+                </a>
+                <a href="#" id="logoutBtn">
+                    <span class="icon">�</span>Logout
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="candidate-main">
+        <!-- Candidate ID Display -->
+        <div class="candidate-id-card">
+            <div class="id-info">
+                <h3><span class="icon">🆔</span>Your Candidate ID</h3>
+                <div class="candidate-id" id="candidateId">Loading...</div>
+                <p class="id-description">This ID is visible to employers during the hiring process</p>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Skills & Profile Section -->
+            <div class="dashboard-card profile-card">
+                <div class="card-header">
+                    <h3><span class="icon">👤</span>Blind Profile</h3>
+                    <span class="status-badge incomplete" id="profileStatus">Incomplete</span>
+                </div>
+                <div class="card-content">
+                    <p>Create your anonymous skill profile with portfolio links and completed assessments.</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="skillCount">0</span>
+                            <span class="stat-label">Skills Added</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="portfolioCount">0</span>
+                            <span class="stat-label">Portfolio Items</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="editProfileBtn2">
+                        <span class="icon">✏️</span>Edit Profile
+                    </button>
+                    <button class="btn btn-outline" id="viewProfileBtn">
+                        <span class="icon">👁️</span>View Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Skill Tests Section -->
+            <div class="dashboard-card tests-card">
+                <div class="card-header">
+                    <h3><span class="icon">🧪</span>Skill Assessments</h3>
+                    <span class="status-badge" id="testsStatus">Available</span>
+                </div>
+                <div class="card-content">
+                    <p>Complete coding challenges, MCQs, and project-based tasks to showcase your abilities.</p>
+                    <div class="test-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="completedTests">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="avgScore">0%</span>
+                            <span class="stat-label">Avg Score</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary" id="takeTestBtn">
+                        <span class="icon">📝</span>Take Test
+                    </button>
+                    <button class="btn btn-outline" id="viewScoresBtn">
+                        <span class="icon">📊</span>View Scores
+                    </button>
+                </div>
+            </div>
+
+            <!-- Application Status Section -->
+            <div class="dashboard-card applications-card">
+                <div class="card-header">
+                    <h3><span class="icon">�</span>Application Status</h3>
+                    <span class="status-badge" id="applicationsBadge">0 Active</span>
+                </div>
+                <div class="card-content">
+                    <p>Track your job applications and see if you've been shortlisted or need to take action.</p>
+                    <div class="application-summary">
+                        <div class="stat">
+                            <span class="stat-number" id="totalApplications">0</span>
+                            <span class="stat-label">Total Applied</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="shortlistedApps">0</span>
+                            <span class="stat-label">Shortlisted</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="viewApplicationsBtn">
+                        <span class="icon">📋</span>View Applications
+                    </button>
+                    <button class="btn btn-outline" id="browseJobsBtn">
+                        <span class="icon">🔍</span>Browse Jobs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Identity Reveal Section (Only visible when shortlisted) -->
+            <div class="dashboard-card identity-card" id="identityRevealCard" style="display: none;">
+                <div class="card-header">
+                    <h3><span class="icon">🧑‍�</span>Identity Reveal</h3>
+                    <span class="status-badge success">Shortlisted!</span>
+                </div>
+                <div class="card-content">
+                    <p>🎉 Congratulations! You've been shortlisted. You can now choose to reveal your identity to proceed.</p>
+                    <div class="reveal-warning">
+                        <span class="icon">⚠️</span>
+                        <span>Once revealed, your personal information will be visible to the employer</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="revealIdentityBtn">
+                        <span class="icon">🔓</span>Reveal Identity
+                    </button>
+                    <button class="btn btn-outline" id="viewShortlistBtn">
+                        <span class="icon">📋</span>View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div class="quick-actions">
+            <h4>Quick Actions</h4>
+            <div class="action-buttons">
+                <button class="quick-btn" id="quickProfile">
+                    <span class="icon">⚡</span>Complete Profile
+                </button>
+                <button class="quick-btn" id="quickTest">
+                    <span class="icon">⚡</span>Take Assessment
+                </button>
+                <button class="quick-btn" id="quickJobs">
+                    <span class="icon">⚡</span>Find Jobs
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        <div id="dynamicContent" class="dynamic-content"></div>
+    </main>
+
+    <!-- Modal for Profile Editing -->
+    <div id="profileModal" class="modal-overlay" style="display: none;">
+        <div class="modal-box large-modal">
+            <button class="modal-close" id="closeProfileModal">&times;</button>
+            <div class="modal-header">
+                <h3><span class="icon">✏️</span>Edit Your Blind Profile</h3>
+                <p>Build your anonymous skill profile</p>
+            </div>
+            <div class="modal-content">
+                <div id="profileEditForm">
+                    <!-- Dynamic profile editing form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Identity Reveal -->
+    <div id="identityModal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <button class="modal-close" id="closeIdentityModal">&times;</button>
+            <div class="modal-header">
+                <h3><span class="icon">🔓</span>Reveal Your Identity</h3>
+                <p>Share your personal information with the employer</p>
+            </div>
+            <div class="modal-content">
+                <div class="reveal-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="City, State/Country">
+                    </div>
+                    <div class="form-group">
+                        <label for="resume">Resume Upload</label>
+                        <input type="file" id="resume" accept=".pdf,.doc,.docx">
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" id="confirmRevealBtn">
+                            <span class="icon">✅</span>Confirm & Reveal
+                        </button>
+                        <button class="btn btn-outline" id="cancelRevealBtn">
+                            <span class="icon">❌</span>Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/test-data.js"></script>
+    <script src="scripts/candidate.js"></script>
+    <script src="scripts/dashboard-tests.js"></script>
+</body>
+</html>

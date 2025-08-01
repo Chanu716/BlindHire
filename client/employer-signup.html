@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Sign Up - BlindHire</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main>
+        <section class="auth-section employer-signup">
+            <h1 class="app-title"><span class="icon">🕶️</span>BlindHire</h1>
+            <h2>Employer Registration</h2>
+            <p class="signup-description">Create your organization account to access skilled, anonymous candidates</p>
+            
+            <form id="signupForm" class="multi-step-form">
+                <!-- Step 1: Basic Company Information -->
+                <div class="form-step active" id="step1">
+                    <h3 class="step-title">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Company Information</span>
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="companyName">Company Name *</label>
+                        <input type="text" id="companyName" name="companyName" placeholder="Enter your company name" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry">Industry *</label>
+                        <select id="industry" name="industry" required>
+                            <option value="">Select your industry</option>
+                            <option value="technology">Technology</option>
+                            <option value="finance">Finance & Banking</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="education">Education</option>
+                            <option value="retail">Retail & E-commerce</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="media">Media & Entertainment</option>
+                            <option value="nonprofit">Non-profit</option>
+                            <option value="government">Government</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="companySize">Company Size *</label>
+                        <select id="companySize" name="companySize" required>
+                            <option value="">Select company size</option>
+                            <option value="1-10">1-10 employees</option>
+                            <option value="11-50">11-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-500">201-500 employees</option>
+                            <option value="501-1000">501-1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website">Company Website</label>
+                        <input type="url" id="website" name="website" placeholder="https://yourcompany.com" />
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" id="nextStep1">
+                            <span class="icon">➡️</span>Next: Contact Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Contact & Location Information -->
+                <div class="form-step" id="step2">
+                    <h3 class="step-title">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Contact & Location</span>
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="contactPersonName">Contact Person Name *</label>
+                        <input type="text" id="contactPersonName" name="contactPersonName" placeholder="Full name of HR/Hiring manager" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle">Your Job Title *</label>
+                        <input type="text" id="jobTitle" name="jobTitle" placeholder="e.g., HR Manager, CTO, Founder" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Work Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your work email" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Company Location *</label>
+                        <input type="text" id="location" name="location" placeholder="City, State/Country" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="headquarters">Headquarters Address</label>
+                        <textarea id="headquarters" name="headquarters" rows="3" placeholder="Full company address (optional)"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="prevStep2">
+                            <span class="icon">⬅️</span>Previous
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextStep2">
+                            <span class="icon">➡️</span>Next: Account Setup
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Account Setup & Additional Details -->
+                <div class="form-step" id="step3">
+                    <h3 class="step-title">
+                        <span class="step-number">3</span>
+                        <span class="step-text">Account Setup</span>
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password" placeholder="Create a strong password" required />
+                        <div class="password-requirements">
+                            <small>Password must be at least 8 characters with uppercase, lowercase, and numbers</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hiringGoals">Hiring Goals</label>
+                        <select id="hiringGoals" name="hiringGoals">
+                            <option value="">What are you looking to hire for?</option>
+                            <option value="frontend">Frontend Developers</option>
+                            <option value="backend">Backend Developers</option>
+                            <option value="fullstack">Full-stack Developers</option>
+                            <option value="mobile">Mobile Developers</option>
+                            <option value="devops">DevOps Engineers</option>
+                            <option value="data">Data Scientists/Analysts</option>
+                            <option value="design">UI/UX Designers</option>
+                            <option value="qa">QA Engineers</option>
+                            <option value="product">Product Managers</option>
+                            <option value="other">Other Roles</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="companyDescription">Company Description</label>
+                        <textarea id="companyDescription" name="companyDescription" rows="4" placeholder="Brief description of your company and culture (optional)"></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="subscribeUpdates" name="subscribeUpdates" />
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Subscribe to BlindHire updates and hiring tips</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="prevStep3">
+                            <span class="icon">⬅️</span>Previous
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="submitForm">
+                            <span class="icon">🚀</span>Create Account
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Company Info</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Contact Details</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Account Setup</div>
+                </div>
+            </div>
+            
+            <div id="signup-message"></div>
+            <p class="auth-switch">Already have an account? <a href="employer-login.html">Login here</a></p>
+        </section>
+    </main>
+    <script src="scripts/employer-signup.js"></script>
+</body>
+</html>

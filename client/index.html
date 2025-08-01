@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlindHire - Bias-Free Hiring Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main>
+        <section class="landing-hero">
+            <h1 class="app-title"><span class="icon">🕶️</span>BlindHire</h1>
+            <h2 class="landing-tagline">Skills-First. Bias-Free. The Future of Hiring.</h2>
+            <p class="landing-description">
+                Transform your hiring process with our anonymous, skills-based recruitment platform. Eliminate bias and focus on what truly matters - talent and performance.
+            </p>
+            
+            <!-- Key Features -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">👤</span>
+                    <h3>Anonymous Applications</h3>
+                    <p>Candidates apply without revealing identity until final selection</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Skills-Based Assessment</h3>
+                    <p>Focus purely on verified skills and performance metrics</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏢</span>
+                    <h3>Bias-Free Recruitment</h3>
+                    <p>Employers shortlist candidates based solely on talent</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Transparent Process</h3>
+                    <p>Track progress with verified assessments and feedback</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="landing-actions">
+                <button id="openLoginModal" class="btn btn-primary">
+                    <span class="icon">🔑</span>Login
+                </button>
+                <button id="openSignupModal" class="btn btn-secondary">
+                    <span class="icon">📝</span>Sign Up
+                </button>
+            </div>
+
+            <!-- Login Modal -->
+            <div id="loginModal" class="modal-overlay" style="display:none;">
+                <div class="modal-box">
+                    <button class="modal-close" id="closeLoginModal">&times;</button>
+                    <div class="modal-header">
+                        <h3><span class="icon">🔑</span>Choose Login Type</h3>
+                        <p>Select your role to access your dashboard</p>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary modal-action" onclick="window.location.href='candidate-login.html'">
+                            <span class="icon">👤</span>Login as Candidate
+                        </button>
+                        <button class="btn btn-secondary modal-action" onclick="window.location.href='employer-login.html'">
+                            <span class="icon">🏢</span>Login as Employer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signup Modal -->
+            <div id="signupModal" class="modal-overlay" style="display:none;">
+                <div class="modal-box">
+                    <button class="modal-close" id="closeSignupModal">&times;</button>
+                    <div class="modal-header">
+                        <h3><span class="icon">📝</span>Choose Signup Type</h3>
+                        <p>Create your account and start your journey</p>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary modal-action" onclick="window.location.href='candidate-signup.html'">
+                            <span class="icon">👤</span>Sign Up as Candidate
+                        </button>
+                        <button class="btn btn-secondary modal-action" onclick="window.location.href='employer-signup.html'">
+                            <span class="icon">🏢</span>Sign Up as Employer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-info">
+            <p>© 2025 BlindHire. Transforming hiring for a fair future.</p>
+            <p class="admin-link">Admin? <a href="admin-login.html">Access Admin Panel</a></p>
+        </div>
+    </footer>
+    
+    <script src="scripts/main.js"></script>
+</body>
+</html>

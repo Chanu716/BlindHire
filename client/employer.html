@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - BlindHire</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="employer-header">
+        <nav>
+            <div class="logo">
+                <span class="icon">🕶️</span>BlindHire
+            </div>
+            <div class="employer-info">
+                <span class="company-name" id="companyName">Loading...</span>
+                <span class="user-role">Employer</span>
+            </div>
+            <div class="nav-links">
+                <a href="#profile" id="editCompanyBtn">
+                    <span class="icon">🏢</span>Edit Company Details
+                </a>
+                <a href="#jobs" id="myJobsBtn">
+                    <span class="icon">📋</span>My Job Posts
+                </a>
+                <a href="#" id="logoutBtn">
+                    <span class="icon">🚪</span>Logout
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="employer-main">
+        <!-- Dashboard Overview -->
+        <div class="dashboard-overview">
+            <div class="overview-card">
+                <div class="overview-icon">📝</div>
+                <div class="overview-content">
+                    <h3 id="totalJobs">0</h3>
+                    <p>Active Job Posts</p>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-icon">👥</div>
+                <div class="overview-content">
+                    <h3 id="totalApplications">0</h3>
+                    <p>Total Applications</p>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-icon">⭐</div>
+                <div class="overview-content">
+                    <h3 id="shortlistedCount">0</h3>
+                    <p>Shortlisted Candidates</p>
+                </div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-icon">🤝</div>
+                <div class="overview-content">
+                    <h3 id="hiresCount">0</h3>
+                    <p>Successful Hires</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="employer-dashboard-grid">
+            <!-- Post Jobs Section -->
+            <div class="dashboard-card primary-card">
+                <div class="card-header">
+                    <h3><span class="icon">📝</span>Post New Job</h3>
+                    <span class="feature-badge">Primary</span>
+                </div>
+                <div class="card-content">
+                    <p>Create job listings with required skills and custom assessments to attract the right talent.</p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <span class="icon">✅</span>
+                            <span>Define skill requirements</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🧪</span>
+                            <span>Add custom assessments</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📊</span>
+                            <span>Set evaluation criteria</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="postJobBtn">
+                        <span class="icon">➕</span>Create Job Post
+                    </button>
+                </div>
+            </div>
+
+            <!-- View Candidates Section -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><span class="icon">🔍</span>View Anonymous Profiles</h3>
+                    <span class="status-badge" id="candidatesBadge">0 Candidates</span>
+                </div>
+                <div class="card-content">
+                    <p>Browse anonymous candidate profiles showing only skills, test scores, and project portfolios.</p>
+                    <div class="profile-preview">
+                        <div class="preview-item">
+                            <strong>Candidate ID:</strong> BH-2025-1234
+                        </div>
+                        <div class="preview-item">
+                            <strong>Skills:</strong> JavaScript, React, Node.js
+                        </div>
+                        <div class="preview-item">
+                            <strong>Test Scores:</strong> 92% Average
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary" id="viewCandidatesBtn">
+                        <span class="icon">👀</span>Browse Candidates
+                    </button>
+                    <button class="btn btn-outline" id="filterCandidatesBtn">
+                        <span class="icon">🔍</span>Advanced Filter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Shortlist Management Section -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><span class="icon">📊</span>Filter & Shortlist</h3>
+                    <span class="status-badge success" id="shortlistBadge">Skills-Based</span>
+                </div>
+                <div class="card-content">
+                    <p>Filter candidates based purely on skill performance and shortlist the best matches for your roles.</p>
+                    <div class="filter-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="reviewingCount">0</span>
+                            <span class="stat-label">Under Review</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="shortlistedTotal">0</span>
+                            <span class="stat-label">Shortlisted</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="shortlistBtn">
+                        <span class="icon">✅</span>Manage Shortlist
+                    </button>
+                    <button class="btn btn-outline" id="reviewApplicationsBtn">
+                        <span class="icon">📋</span>Review Applications
+                    </button>
+                </div>
+            </div>
+
+            <!-- Identity Reveal Section -->
+            <div class="dashboard-card identity-card">
+                <div class="card-header">
+                    <h3><span class="icon">🔓</span>Identity Reveal</h3>
+                    <span class="status-badge warning">Post-Shortlist</span>
+                </div>
+                <div class="card-content">
+                    <p>Request identity reveal from shortlisted candidates to proceed with interviews and hiring.</p>
+                    <div class="reveal-info">
+                        <div class="info-item">
+                            <span class="icon">⚠️</span>
+                            <span>Only available after shortlisting</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">🔒</span>
+                            <span>Candidate must consent to reveal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary" id="revealIdentityBtn">
+                        <span class="icon">🔓</span>Request Identity Reveal
+                    </button>
+                    <button class="btn btn-outline" id="viewRevealedBtn">
+                        <span class="icon">👁️</span>View Revealed Profiles
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contact Candidates Section -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3><span class="icon">🤝</span>Contact Candidates</h3>
+                    <span class="status-badge" id="contactsBadge">0 Available</span>
+                </div>
+                <div class="card-content">
+                    <p>Initiate communication with revealed candidates for interviews and further hiring process.</p>
+                    <div class="contact-features">
+                        <div class="feature-item">
+                            <span class="icon">📧</span>
+                            <span>Send interview invitations</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📅</span>
+                            <span>Schedule interviews</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📞</span>
+                            <span>Contact for offers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="contactCandidatesBtn">
+                        <span class="icon">📧</span>Send Messages
+                    </button>
+                    <button class="btn btn-outline" id="scheduleInterviewsBtn">
+                        <span class="icon">📅</span>Schedule Interviews
+                    </button>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div class="dashboard-card analytics-card">
+                <div class="card-header">
+                    <h3><span class="icon">📈</span>Hiring Analytics</h3>
+                    <span class="status-badge info">Insights</span>
+                </div>
+                <div class="card-content">
+                    <p>Track your hiring performance and get insights into candidate quality and process efficiency.</p>
+                    <div class="analytics-preview">
+                        <div class="metric">
+                            <span class="metric-value">85%</span>
+                            <span class="metric-label">Quality Score</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">12</span>
+                            <span class="metric-label">Avg. Days to Hire</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-outline" id="viewAnalyticsBtn">
+                        <span class="icon">📊</span>View Full Analytics
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        <div id="dynamicContent" class="dynamic-content"></div>
+    </main>
+
+    <!-- Modal for Job Posting -->
+    <div id="jobPostModal" class="modal-overlay" style="display: none;">
+        <div class="modal-box large-modal">
+            <button class="modal-close" id="closeJobModal">&times;</button>
+            <div class="modal-header">
+                <h3><span class="icon">📝</span>Create New Job Post</h3>
+                <p>Define your requirements and attract skilled candidates</p>
+            </div>
+            <div class="modal-content">
+                <div id="jobPostForm">
+                    <!-- Dynamic job posting form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Company Details -->
+    <div id="companyModal" class="modal-overlay" style="display: none;">
+        <div class="modal-box large-modal">
+            <button class="modal-close" id="closeCompanyModal">&times;</button>
+            <div class="modal-header">
+                <h3><span class="icon">🏢</span>Edit Company Details</h3>
+                <p>Update your organization information</p>
+            </div>
+            <div class="modal-content">
+                <div id="companyEditForm">
+                    <!-- Company editing form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Candidate Filtering -->
+    <div id="filterModal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <button class="modal-close" id="closeFilterModal">&times;</button>
+            <div class="modal-header">
+                <h3><span class="icon">🔍</span>Advanced Candidate Filter</h3>
+                <p>Find candidates that match your exact requirements</p>
+            </div>
+            <div class="modal-content">
+                <div id="filterForm">
+                    <!-- Filter form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/test-data.js"></script>
+    <script src="scripts/employer.js"></script>
+    <script src="scripts/dashboard-tests.js"></script>
+</body>
+</html>

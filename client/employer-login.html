@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Login - BlindHire</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main>
+        <section class="auth-section">
+            <h1 class="app-title"><span class="icon">🕶️</span>BlindHire</h1>
+            <h2>Employer Login</h2>
+            <form id="loginForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="✉️ Email" required />
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="🔑 Password" required />
+                <button type="submit" class="btn btn-primary"><span class="icon">🔐</span>Login</button>
+            </form>
+            <div id="login-message"></div>
+            <p class="auth-switch">Don't have an account? <a href="employer-signup.html">Sign up</a></p>
+        </section>
+    </main>
+    <script src="scripts/employer-login.js"></script>
+</body>
+</html>
